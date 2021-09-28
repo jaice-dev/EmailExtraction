@@ -11,7 +11,7 @@ namespace EmailExtraction2
         static void Main(string[] args)
         {
             string sampleString = File.ReadAllText(@"C:\Training\EmailExtraction2\sample.txt");
-            var emailRegex = new Regex(@"\w@softwire.com\s+");
+            var emailRegex = new Regex(@"\w(@softwire.com)\s+");
             var matches = emailRegex.Matches(sampleString);
 
             foreach (Match match in matches)
