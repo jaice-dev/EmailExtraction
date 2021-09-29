@@ -26,15 +26,15 @@ namespace EmailExtraction2
 
             Dictionary<string, int> domainDict = new Dictionary<string, int>();
 
-            var allEmailsRegex = new Regex(@"@[a-zA-Z0-9-_.]+");
+            var allEmailsRegex = new Regex(@"[a-zA-Z0-9-_.]+(@[a-zA-Z0-9-_.]+)\s+");
             var allEmailMatches = allEmailsRegex.Matches(inputText);
 
             foreach (Match match in allEmailMatches)
             {
-                if (!domainDict.ContainsKey(match.Value))
+                if (!domainDict.ContainsKey(match.Groups[1].Value))
                 {
-                    var domainRegex = new Regex(match.Value);
-                    domainDict[match.Value] = domainRegex.Matches(inputText).Count;
+                    var domainRegex = new Regex(@$"{match.Groups[1].Value}\s+");
+                    domainDict[match.Groups[1].Value] = domainRegex.Matches(inputText).Count;
                 }
             }
 
