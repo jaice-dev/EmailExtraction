@@ -10,15 +10,17 @@ namespace EmailExtraction2
         {
         static void Main(string[] args)
         {
-            string sampleString = File.ReadAllText(@"C:\Training\EmailExtraction2\sample.txt");
-            var emailRegex = new Regex(@"\w(@softwire.com)\s+");
-            var matches = emailRegex.Matches(sampleString);
+            string inputText = File.ReadAllText(@"C:\Training\EmailExtraction2\sample.txt");
+            var emailDomainRegex = new Regex(@"\w(@softwire.com)\s+");
+            var matches = emailDomainRegex.Matches(inputText);
+            int emailCount = 0;
 
             foreach (Match match in matches)
             {
-                Console.WriteLine(match);
+                emailCount++;
             }
-
+            
+            Console.WriteLine($"Number of matches containing @softwire.com: {emailCount}");
         }
 
     }
